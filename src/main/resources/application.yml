@@ -8,27 +8,10 @@ spring:
     username: root
     password: 111111
 
-# sql 日志（方式一）
-logging:
-  level:
-    # mapper接口所在的包
-    com.example.mapper: debug
-
+# mybatis相关配置
 mybatis:
+  #  包所在路径
   mapper-locations: classpath:mapper/*.xml
-
-
-
-
-
-
-
-
-
-
-
-
-# sql 日志（方式二） 需要添加 mybatis-plus 依赖
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

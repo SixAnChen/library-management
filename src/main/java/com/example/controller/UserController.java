@@ -1,6 +1,8 @@
 package com.example.controller;
 
 
+import com.example.common.Result;
+import com.example.controller.request.UserPageRequest;
 import com.example.entity.User;
 import com.example.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,13 @@ public class UserController {
 
 
     @GetMapping("/list")
-    public List<User> listUser() {
-        return userService.listUsers();
+    public Result list() {
+        List<User> users = userService.list();
+        return Result.success(users);
+    }
+
+    @GetMapping("/page")
+    public Result page(UserPageRequest userPageRequest) {
+        return Result.success(userService.page(userPageRequest));
     }
 }
