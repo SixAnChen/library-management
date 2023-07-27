@@ -14,4 +14,10 @@ public interface UserMapper {
     List<User> list();
 
     List<User> listByCondition(UserPageRequest userPageRequest);
+
+    void save(User user);
+
+    User getById(Integer id);
+
+    void updateById(User user);
 }
