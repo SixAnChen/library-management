@@ -2,12 +2,18 @@ package com.example.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
+import com.example.controller.dto.LoginDTO;
+import com.example.controller.request.LoginRequest;
 import com.example.controller.request.UserPageRequest;
 import com.example.entity.User;
+import com.example.exception.ServiceException;
 import com.example.mapper.UserMapper;
 import com.example.service.IUserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserService implements IUserService {
 
     @Autowired
@@ -55,6 +62,23 @@ public class UserService implements IUserService {
     @Override
     public void deleteById(Integer id) {
         userMapper.deleteById(id);
+    }
+
+    @Override
+    public LoginDTO login(LoginRequest loginRequest) {
+        try {
+            User user = userMapper.getByNameAndPassword(loginRequest);
+            if (user == null) {
+                throw new ServiceException("用户名或密码错误");
+            }
+            LoginDTO loginDTO = new LoginDTO();
+            BeanUtils.copyProperties(user, loginDTO);
+            return loginDTO;
+        } catch (BeansException e) {
+            e.printStackTrace();
+            log.error("登录出现异常");
+            return null;
+        }
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.controller.dto.LoginDTO;
+import com.example.controller.request.LoginRequest;
 import com.example.controller.request.UserPageRequest;
 import com.example.entity.User;
 
@@ -17,4 +19,6 @@ public interface IUserService {
     void update(User user);
 
     void deleteById(Integer id);
+
+    LoginDTO login(LoginRequest loginRequest);
 }

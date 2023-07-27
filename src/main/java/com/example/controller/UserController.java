@@ -2,6 +2,8 @@ package com.example.controller;
 
 
 import com.example.common.Result;
+import com.example.controller.dto.LoginDTO;
+import com.example.controller.request.LoginRequest;
 import com.example.controller.request.UserPageRequest;
 import com.example.entity.User;
 import com.example.service.IUserService;
@@ -55,5 +57,13 @@ public class UserController {
         return Result.success();
     }
 
+    @PostMapping("/login")
+    public Result login(@RequestBody LoginRequest loginRequest) {
+        LoginDTO login = userService.login(loginRequest);
+//        if (login == null) {
+//            return Result.error("用户名或密码错误！");
+//        }
+        return Result.success(login);
+    }
 
 }

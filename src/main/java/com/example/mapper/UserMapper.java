@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import com.example.controller.request.LoginRequest;
 import com.example.controller.request.UserPageRequest;
 import com.example.entity.User;
 import org.apache.ibatis.annotations.Delete;
@@ -25,4 +26,7 @@ public interface UserMapper {
 
     @Delete("delete from user where id = #{id}")
     void deleteById(Integer id);
+
+    @Select(" select * from user  where name = #{name} and password = #{password}")
+    User getByNameAndPassword(LoginRequest loginRequest);
 }
