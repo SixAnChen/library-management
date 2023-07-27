@@ -42,9 +42,16 @@ public class UserController {
         User user = userService.getById(id);
         return Result.success(user);
     }
+
     @PutMapping
     public Result update(@RequestBody User user) {
         userService.update(user);
+        return Result.success();
+    }
+
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id) {
+        userService.deleteById(id);
         return Result.success();
     }
 

@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.UserMapper">
 
-
     <select id="listByCondition" resultType="com.example.entity.User">
         select * from user
         <where>
@@ -23,18 +22,15 @@
         values (#{name}, #{username}, #{age}, #{sex}, #{phone}, #{address})
     </insert>
 
-    <select id="getById" parameterType="int" resultType="com.example.entity.User">
-        select *
-        from user
-        where id = #{id}
-    </select>
+
     <update id="updateById">
         update user
-        set name    = #{ name },
-            age     = #{ age },
-            sex     = #{ sex },
-            phone   = #{ phone },
-            address = #{ address }
+        set name       = #{ name },
+            age        = #{ age },
+            sex        = #{ sex },
+            phone      = #{ phone },
+            address    = #{ address },
+            updatetime = #{ updatetime }
         where id = #{ id }
     </update>
 </mapper>

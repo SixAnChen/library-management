@@ -15,4 +15,6 @@ public interface IUserService {
     User getById(Integer id);
 
     void update(User user);
+
+    void deleteById(Integer id);
 }
