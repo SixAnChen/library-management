@@ -19,7 +19,7 @@ public interface UserMapper {
 
     void save(User user);
 
-    @Select(" select * from user  where id = #{id}")
+    @Select(" select * from user where id = #{id}")
     User getById(Integer id);
 
     void updateById(User user);
